@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Are You Sure?</title>
+    <style>
+        body {
+            background: linear-gradient(135deg, #ffb6c1 0%, #ffe0e9 100%);
+            font-family: 'Segoe UI', sans-serif;
+            display: flex;
+            min-height: 100vh;
+            margin: 0;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .container {
+            text-align: center;
+            padding: 2rem 3rem;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 2px 12px rgba(240, 62, 96, 0.16);
+        }
+
+        h1 {
+            color: #e75480;
+            margin-bottom: 2rem;
+        }
+
+        .buttons {
+            margin-bottom: 1rem;
+        }
+
+        button {
+            background: #e75480;
+            color: white;
+            border: none;
+            border-radius: 12px;
+            padding: 0.8rem 2rem;
+            margin: 0 1rem;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: background 0.2s, transform 0.1s;
+        }
+
+        button:hover {
+            background: #ff99aa;
+            transform: scale(1.08);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>You sure u (dumb) my Bestfriend?</h1>
+        <div class="buttons">
+            <button id="yes-btn">Yes</button>
+            <button id="no-btn">No</button>
+        </div>
+        <div id="message"></div>
+    </div>
+    <script>
+        const noBtn = document.getElementById('no-btn');
+        const yesBtn = document.getElementById('yes-btn');
+        const messageDiv = document.getElementById('message');
+
+        yesBtn.addEventListener('click', () => {
+            messageDiv.innerHTML = "Chal be BKL🖕<br>(u accepted that u r you dumb🤭🫵)";
+            messageDiv.style.color = "#e75480";
+        });
+
+        noBtn.addEventListener('mouseenter', () => {
+            const container = document.querySelector('.container');
+            const btnRect = noBtn.getBoundingClientRect();
+            const contRect = container.getBoundingClientRect();
+            const buffer = 30;
+
+            // Generate random new X/Y within container, avoiding overflow
+            let newX = Math.random() * (contRect.width - btnRect.width - buffer * 2);
+            let newY = Math.random() * (contRect.height - btnRect.height - buffer * 2);
+
+            noBtn.style.position = "absolute";
+            noBtn.style.left = `${newX + buffer}px`;
+            noBtn.style.top = `${newY + buffer + 70}px`; // +70 for header
+        });
+
+        // Reset No button on mouse leave from container
+        document.querySelector('.container').addEventListener('mouseleave', () => {
+            noBtn.style.position = "static";
+            noBtn.style.left = '';
+            noBtn.style.top = '';
+        });
+
+    </script>
+</body>
+
+</html>
